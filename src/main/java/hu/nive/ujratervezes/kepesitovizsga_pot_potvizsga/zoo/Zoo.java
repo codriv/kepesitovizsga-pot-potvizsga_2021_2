@@ -76,20 +76,24 @@ public class Zoo {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from animals")) {
                 while (rs.next()) {
-                    String name = rs.getString("animal_name");
-                    int length = rs.getInt("length_of_member");
-                    long weight = rs.getLong("weight");
-                    AnimalType type = AnimalType.valueOf(rs.getString("animal_type"));
-                    switch (type) {
-                        case LION: animals.add(new Lion(name));
-                        break;
-                        case GIRAFFE: animals.add(new Giraffe(name, length));
-                        break;
-                        case ELEPHANT: animals.add(new Elephant(name, length, weight));
-                    }
+                    addAnimals(rs);
                 }
             } catch (SQLException sqle) {
             throw new IllegalStateException("Cannot reach database!");
+        }
+    }
+
+    private void addAnimals(ResultSet rs) throws SQLException {
+        String name = rs.getString("animal_name");
+        int length = rs.getInt("length_of_member");
+        long weight = rs.getLong("weight");
+        AnimalType type = AnimalType.valueOf(rs.getString("animal_type"));
+        switch (type) {
+            case LION: animals.add(new Lion(name));
+            break;
+            case GIRAFFE: animals.add(new Giraffe(name, length));
+            break;
+            case ELEPHANT: animals.add(new Elephant(name, length, weight));
         }
     }
 
