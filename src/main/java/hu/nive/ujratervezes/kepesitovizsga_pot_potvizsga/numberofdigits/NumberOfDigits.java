@@ -7,12 +7,17 @@ public class NumberOfDigits {
         int length = numberString.length();
         if (length == 1) {
             return number;
+        } else {
+            return getNumOfDigits(number, length);
         }
+    }
+
+    private int getNumOfDigits(int number, int length) {
         double last = (number - Math.pow(10, (length - 1)) + 1) * length;
         int first = 0;
         for (int i = 1; i < length; i++) {
-            first += Math.pow(10, i) * i;
+            first += (Math.pow(10, i) - Math.pow(10, (i - 1))) * i;
         }
-        return first + (int)last - 1;
+        return first + (int)last;
     }
 }

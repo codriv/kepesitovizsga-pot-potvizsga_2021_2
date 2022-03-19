@@ -12,6 +12,11 @@ public class NumberOfDigitsTest {
 
     @Test
     public void testGetNumberOfDigits2() {
-        Assertions.assertEquals(281, new NumberOfDigits().getNumberOfDigits(123));
+        Assertions.assertEquals(261, new NumberOfDigits().getNumberOfDigits(123));
+    }
+
+    @Test
+    public void testGetNumberOfDigits3() {
+        Assertions.assertEquals(3829, new NumberOfDigits().getNumberOfDigits(1234));
     }
 }
