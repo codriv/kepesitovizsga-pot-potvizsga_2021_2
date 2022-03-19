@@ -28,7 +28,7 @@ public class Zoo {
     }
 
     public ZooAnimal getHeaviestAnimalInTheZoo() {
-        return animals.stream().max(Comparator.comparing(ZooAnimal::getWeight)).get();
+        return animals.stream().max(Comparator.comparing(ZooAnimal::getWeight)).orElseThrow(()->new IllegalStateException("Animal not found!"));
     }
 
     public long countWeights() {
